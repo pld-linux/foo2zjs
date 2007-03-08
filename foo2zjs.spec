@@ -7,7 +7,7 @@ Release:	0.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://foo2zjs.rkkda.com/%{name}.tar.gz
-# Source0-md5:	8993a77bf2d2594c16de71b6fb1869f2
+# Source0-md5:	67c2084101d044c94abcb7495fc17e02
 Source1:	http://foo2zjs.rkkda.com/sihp1000.tar.gz
 # Source1-md5:	5d47d54f9cc19225c6ad07763bd02801
 Source2:	http://foo2zjs.rkkda.com/sihp1005.tar.gz
