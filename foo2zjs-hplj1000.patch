@@ -1,0 +1,63 @@
+--- hplj1000.orig	2007-03-06 23:00:06.000000000 +0000
++++ hplj1000	2007-03-06 22:14:44.000000000 +0000
+@@ -40,7 +40,7 @@
+ #
+ # Program used to determine USB id information
+ #
+-USBID=/bin/usb_printerid
++USBID=/usr/bin/usb_printerid
+ 
+ #
+ #	Figure out how to log our messages
+@@ -65,7 +65,7 @@
+ #
+ #	Figure out the model number from the name of this script
+ #
+-case "$0" in
++case "$1" in
+ *1000)
+     MODEL=1000
+     USB1=0x03f0	#Vendor
+@@ -91,42 +91,6 @@
+     exit
+     ;;
+ esac
+-
+-#
+-#	The special command line argument "install-usermap" will install
+-#	the proper entry into the /etc/hotplug/usb.usermap file
+-#
+-case "$1" in
+-install-usermap)
+-    if [ "$USB2" != "" ]; then
+-	if [ -w /etc/hotplug/usb.usermap ]; then
+-		USERMAP=/etc/hotplug/usb.usermap
+-	elif [ -d /etc/hotplug/usb/ ]; then
+-		USERMAP=/etc/hotplug/usb/foo2zjs.usermap
+-		if [ ! -s $USERMAP ]; then
+-			echo > $USERMAP
+-		fi
+-	else
+-		log "No /etc/hotplug usermap!"
+-		exit
+-	fi
+-	chmod 664 $USERMAP
+-	ex - $USERMAP <<-EOF
+-	g/^hplj$MODEL/d
+-	\$a
+-	hplj$MODEL 0x0003 $USB1 $USB2 0x0000 0x0000 0x00 0x00 0x00 0x00 0x00 0x00 0x00000000
+-	.
+-	w
+-	q
+-	EOF
+-    else
+-	log "I don't know the USB info for this model yet.  Please run"
+-	log "usb_printerid on the usb device and send the output to:"
+-	log "rick.richardson@comcast.net"
+-    fi
+-    exit 0
+-    ;;
+-esac
+  
+ #
+ #	Procedure to load a single device with firmware
