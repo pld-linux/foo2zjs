@@ -1,8 +1,7 @@
-
 Summary:	Linux printer driver for ZjStream protocol
 Summary(pl.UTF-8):Linuksowy sterownik drukarek dla protokołu ZjStream
 Name:		foo2zjs
-Version:	20070303
+Version:	20070308
 Release:	0.1
 License:	GPL v2
 Group:		Applications/System
@@ -19,7 +18,7 @@ Source4:	http://foo2zjs.rkkda.com/sihp1020.tar.gz
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-udev-rules.patch
 Patch2:		%{name}-hplj1000.patch
-URL:		http//foo2zjs.rkkda.com
+URL:		http://foo2zjs.rkkda.com/
 BuildRequires:	cups-filter-foomatic
 BuildRequires:	ghostscript
 BuildRequires:	groff
@@ -58,8 +57,9 @@ Summary:	Firmware for HP LaserJet 10xx printers
 Summary(pl.UTF-8):Firmware dla drukarek HP LaserJet 10xx
 License:	distributable
 Group:		Applications/System
-Requires:	%{name}-udev-rules
+Requires:	cups-foomatic-db-HP
 Requires:	%{name} = %{version}
+BuildArch:	noarch
 
 %description firmware
 Firmware for HP LaserJet 10xx printers
@@ -74,8 +74,7 @@ Summary:	udev rules for HP LaserJet 10xx printers
 Summary(pl.UTF-8):Reguły udev dla drukarek HP LaserJet 10xx
 Group:		Applications/System
 Requires:	%{name}-firmware
-Requires:	cups-foomatic-db-HP
-Requires:	foo2zjs
+Requires:	%{name} = %{version}
 Requires:	udev
 
 %description udev-rules
