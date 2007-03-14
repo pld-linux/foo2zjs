@@ -1,5 +1,5 @@
 Summary:	Linux printer driver for ZjStream protocol
-Summary(pl.UTF-8):Linuksowy sterownik drukarek dla protokołu ZjStream
+Summary(pl.UTF-8):	Linuksowy sterownik drukarek dla protokołu ZjStream
 Name:		foo2zjs
 Version:	20070308
 Release:	0.1
@@ -41,7 +41,7 @@ such as these:
 
 %description -l pl.UTF-8
 foo2zjs to otwarty sterownik dla drukarek używających do druku
-protokołu Zenographics ZjStream. Dzięki foo2zjs możesz drukować na
+protokołu Zenographics ZjStream. Dzięki foo2zjs można drukować na
 drukarkach HP oraz Minolta/QMS ZjStream takich jak:
 
 - HP LaserJet 1000 B/W
@@ -54,27 +54,26 @@ drukarkach HP oraz Minolta/QMS ZjStream takich jak:
 
 %package firmware
 Summary:	Firmware for HP LaserJet 10xx printers
-Summary(pl.UTF-8):Firmware dla drukarek HP LaserJet 10xx
+Summary(pl.UTF-8):	Firmware dla drukarek HP LaserJet 10xx
 License:	distributable
 Group:		Applications/System
+Requires:	%{name} = %{version}-%{release}
 Requires:	cups-foomatic-db-HP
-Requires:	%{name} = %{version}
-BuildArch:	noarch
 
 %description firmware
-Firmware for HP LaserJet 10xx printers
+Firmware for HP LaserJet 10xx printers:
 - HP LaserJet 1000, 1005, 1018, 1020
 
 %description firmware -l pl.UTF-8
-Firmware dla drukarek HP LaserJet 10xx
+Firmware dla drukarek HP LaserJet 10xx:
 - HP LaserJet 1000, 1005, 1018, 1020
 
 %package udev-rules
 Summary:	udev rules for HP LaserJet 10xx printers
-Summary(pl.UTF-8):Reguły udev dla drukarek HP LaserJet 10xx
+Summary(pl.UTF-8):	Reguły udev dla drukarek HP LaserJet 10xx
 Group:		Applications/System
-Requires:	%{name}-firmware
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-firmware = %{version}-%{release}
 Requires:	udev
 
 %description udev-rules
@@ -105,7 +104,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{firmware,crd}
 install -d $RPM_BUILD_ROOT/etc/udev/rules.d
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 install {arm2hpdl,foo2zjs,foo2zjs-wrapper,zjsdecode,usb_printerid} \
-    $RPM_BUILD_ROOT%{_bindir}/
+	$RPM_BUILD_ROOT%{_bindir}
 install hplj1000 $RPM_BUILD_ROOT%{_bindir}/hplj10xx
 install hplj10xx.rules $RPM_BUILD_ROOT/etc/udev/rules.d/11-hplj10xx.rules
 
@@ -113,11 +112,11 @@ install %{SOURCE1} .
 install %{SOURCE2} .
 install %{SOURCE3} .
 install %{SOURCE4} .
-for i in sihp1000 sihp1005 sihp1018 sihp1020; do \
-	tar -xf $i.tar.gz --use=gzip; \
-	rm $i.tar.gz; \
-	./arm2hpdl $i.img > $i.dl; \
-	install $i.dl $RPM_BUILD_ROOT%{_datadir}/%{name}/firmware/; \
+for i in sihp1000 sihp1005 sihp1018 sihp1020; do
+	tar -xf $i.tar.gz --use=gzip
+	rm $i.tar.gz
+	./arm2hpdl $i.img > $i.dl
+	install $i.dl $RPM_BUILD_ROOT%{_datadir}/%{name}/firmware
 done
 install *.ps $RPM_BUILD_ROOT%{_datadir}/%{name}
 install crd/zjs/*.{crd,ps} \
@@ -135,14 +134,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog README manual.pdf
 %attr(755,root,root) %{_bindir}/*
-%dir %{_datadir}/%{name}/
+%dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.ps
-%{_datadir}/%{name}/crd/
-%{_mandir}/man1/*.1.gz
+%{_datadir}/%{name}/crd
+%{_mandir}/man1/*.1*
 
 %files firmware
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/firmware/
+%{_datadir}/%{name}/firmware
 
 %files udev-rules
 %defattr(644,root,root,755)
