@@ -74,7 +74,7 @@ Summary(pl.UTF-8):	Reguły udev dla drukarek HP LaserJet 10xx
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-firmware = %{version}-%{release}
-Requires:	udev
+Requires:	udev-core
 
 %description udev-rules
 udev rules for printers:
