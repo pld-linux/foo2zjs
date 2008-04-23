@@ -1,11 +1,11 @@
 --- hplj1000.orig	2007-03-06 23:00:06.000000000 +0000
 +++ hplj1000	2007-03-06 22:14:44.000000000 +0000
-@@ -40,7 +40,7 @@
+@@ -47,7 +47,7 @@
+ #    [snip]
+ #    # Mount all other filesystems (except for NFS and /proc, which is already
  #
- # Program used to determine USB id information
- #
--USBID=/bin/usb_printerid
-+USBID=/usr/bin/usb_printerid
+-PRINTERID=/bin/usb_printerid
++PRINTERID=/usr/bin/usb_printerid
  
  #
  #	Figure out how to log our messages
@@ -15,8 +15,8 @@
  #
 -case "$0" in
 +case "$1" in
- *1000)
-     MODEL=1000
+ *P1005)
+     MODEL=P1005
      USB1=0x03f0	#Vendor
 @@ -91,42 +91,6 @@
      exit
