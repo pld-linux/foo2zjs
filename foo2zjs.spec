@@ -2,7 +2,7 @@ Summary:	Linux printer driver for ZjStream protocol
 Summary(pl.UTF-8):	Linuksowy sterownik drukarek dla protokołu ZjStream
 Name:		foo2zjs
 Version:	20080418
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://foo2zjs.rkkda.com/%{name}.tar.gz
@@ -101,7 +101,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{firmware,crd}
 install -d $RPM_BUILD_ROOT/etc/udev/rules.d
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
-install {arm2hpdl,foo2zjs,foo2zjs-wrapper,zjsdecode,usb_printerid} \
+install {arm2hpdl,foo2zjs,foo2zjs-wrapper,foo2zjs-pstops{,.sh},zjsdecode,usb_printerid} \
 	$RPM_BUILD_ROOT%{_bindir}
 install hplj1000 $RPM_BUILD_ROOT%{_bindir}/hplj10xx
 install hplj10xx.rules $RPM_BUILD_ROOT/etc/udev/rules.d/11-hplj10xx.rules
