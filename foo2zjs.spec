@@ -101,8 +101,9 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{firmware,crd}
 install -d $RPM_BUILD_ROOT/etc/udev/rules.d
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
-install {arm2hpdl,foo2zjs,foo2zjs-wrapper,foo2zjs-pstops{,.sh},zjsdecode,usb_printerid} \
-	$RPM_BUILD_ROOT%{_bindir}
+%{__make} install-prog PREFIX="$RPM_BUILD_ROOT%{_prefix}" MANDIR="$RPM_BUILD_ROOT%{_mandir}" UDEVBIN="$RPM_BUILD_ROOT%{_bindir}"
+%{__make} install-man PREFIX="$RPM_BUILD_ROOT%{_prefix}" MANDIR="$RPM_BUILD_ROOT%{_mandir}"
+
 install hplj1000 $RPM_BUILD_ROOT%{_bindir}/hplj10xx
 install hplj10xx.rules $RPM_BUILD_ROOT/etc/udev/rules.d/11-hplj10xx.rules
 
@@ -119,8 +120,6 @@ done
 install *.ps $RPM_BUILD_ROOT%{_datadir}/%{name}
 install crd/zjs/*.{crd,ps} \
 	$RPM_BUILD_ROOT%{_datadir}/%{name}/crd
-install {foo2zjs,foo2zjs-wrapper,zjsdecode}.1 \
-	$RPM_BUILD_ROOT%{_mandir}/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
