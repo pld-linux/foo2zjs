@@ -1,6 +1,7 @@
---- hplj10xx.rules.org	2008-04-23 15:46:24.598792282 +0200
-+++ hplj10xx.rules	2008-04-23 15:46:47.896572716 +0200
-@@ -1,28 +1,28 @@
+diff -uNr foo2zjs.old/hplj10xx.rules foo2zjs/hplj10xx.rules
+--- foo2zjs.old/hplj10xx.rules	2008-09-26 19:55:07.000000000 +0200
++++ foo2zjs/hplj10xx.rules	2008-09-26 19:56:10.000000000 +0200
+@@ -1,36 +1,36 @@
  #Own udev rule for HP Laserjet 1000
  KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
  	SYSFS{product}=="hp LaserJet 1000", NAME="usb/%k", \
@@ -31,6 +32,16 @@
  	SYSFS{product}=="HP LaserJet P1006", NAME="usb/%k", \
 -	SYMLINK+="hpljP1006-%n", MODE="0666", RUN+="/etc/hotplug/usb/hpljP1006" 
 +	SYMLINK+="hpljP1006-%n", MODE="0666", RUN+="/usr/bin/hpljP1006" 
+ #Own udev rule for HP Laserjet P1007
+ KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
+ 	SYSFS{product}=="HP LaserJet P1007", NAME="usb/%k", \
+-	SYMLINK+="hpljP1007-%n", MODE="0666", RUN+="/etc/hotplug/usb/hpljP1007" 
++	SYMLINK+="hpljP1007-%n", MODE="0666", RUN+="/usr/bin/hpljP1007" 
+ #Own udev rule for HP Laserjet P1008
+ KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
+ 	SYSFS{product}=="HP LaserJet P1008", NAME="usb/%k", \
+-	SYMLINK+="hpljP1008-%n", MODE="0666", RUN+="/etc/hotplug/usb/hpljP1008" 
++	SYMLINK+="hpljP1008-%n", MODE="0666", RUN+="/usr/bin/hpljP1008" 
  #Own udev rule for HP Laserjet P1505
  KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
  	SYSFS{product}=="HP LaserJet P1505", NAME="usb/%k", \
