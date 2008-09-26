@@ -1,12 +1,12 @@
 Summary:	Linux printer driver for ZjStream protocol
 Summary(pl.UTF-8):	Linuksowy sterownik drukarek dla protokołu ZjStream
 Name:		foo2zjs
-Version:	20080418
-Release:	2
+Version:	20080926
+Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://foo2zjs.rkkda.com/%{name}.tar.gz
-# Source0-md5:	d86f589c37166420afe9122a2538420b
+# Source0-md5:	23f9b9a412d0986fa9d04b243464610f
 Source1:	http://foo2zjs.rkkda.com/firmware/sihp1000.tar.gz
 # Source1-md5:	8c7028d4be5b5b12ed19a59969b3911a
 Source2:	http://foo2zjs.rkkda.com/firmware/sihp1005.tar.gz
