@@ -8,13 +8,15 @@ Group:		Applications/System
 Source0:	http://foo2zjs.rkkda.com/%{name}.tar.gz
 # Source0-md5:	23f9b9a412d0986fa9d04b243464610f
 Source1:	http://foo2zjs.rkkda.com/firmware/sihp1000.tar.gz
-# Source1-md5:	8c7028d4be5b5b12ed19a59969b3911a
+# Source1-md5:	4555cc56685d324b07855a5eed4b83fc
 Source2:	http://foo2zjs.rkkda.com/firmware/sihp1005.tar.gz
-# Source2-md5:	59cc9f6a2c1657be8d5070e4ec97b06a
-Source3:	http://foo2zjs.rkkda.com/firmware/sihp1018.tar.gz
-# Source3-md5:	0d4abf6091aa28a98b9993fbe2dbbaa2
-Source4:	http://foo2zjs.rkkda.com/firmware/sihp1020.tar.gz
-# Source4-md5:	02b19c047be9a6fed84dc53327c116fc
+# Source2-md5:	6ff073de4e796d0bb3d5178c0305927d
+Source3:        http://foo2zjs.rkkda.com/firmware/sihpP1006.tar.gz
+# Source3-md5:	bee0e8b61976af6ffc0976cdf9bc2ba4
+Source4:	http://foo2zjs.rkkda.com/firmware/sihp1018.tar.gz
+# Source4-md5:	7ae97677adcc7962a82993dc4e012469
+Source5:	http://foo2zjs.rkkda.com/firmware/sihp1020.tar.gz
+# Source5-md5:	b84f2512061da68a165e1e10a2adf502
 Patch0:		%{name}-udev-rules.patch
 Patch1:		%{name}-hplj1000.patch
 URL:		http://foo2zjs.rkkda.com/
@@ -32,6 +34,7 @@ such as these:
 
 - HP LaserJet 1000 B/W
 - HP LaserJet 1005 B/W
+- HP LaserJet 1006 B/W
 - HP LaserJet 1018 B/W
 - HP LaserJet 1020 B/W
 - Konica Minolta magicolor 2430 DL B/W and color
@@ -45,6 +48,7 @@ drukarkach HP oraz Minolta/QMS ZjStream takich jak:
 
 - HP LaserJet 1000 B/W
 - HP LaserJet 1005 B/W
+- HP LaserJet 1006 B/W
 - HP LaserJet 1018 B/W
 - HP LaserJet 1020 B/W
 - Konica Minolta magicolor 2430 DL B/W and color
@@ -61,11 +65,11 @@ Requires:	cups-foomatic-db-HP
 
 %description firmware
 Firmware for HP LaserJet 10xx printers:
-- HP LaserJet 1000, 1005, 1018, 1020
+- HP LaserJet 1000, 1005, 1006, 1018, 1020
 
 %description firmware -l pl.UTF-8
 Firmware dla drukarek HP LaserJet 10xx:
-- HP LaserJet 1000, 1005, 1018, 1020
+- HP LaserJet 1000, 1005, 1006, 1018, 1020
 
 %package udev-rules
 Summary:	udev rules for HP LaserJet 10xx printers
@@ -77,15 +81,15 @@ Requires:	udev-core
 
 %description udev-rules
 udev rules for printers:
-- HP LaserJet 1000, 1005, 1018, 1020
+- HP LaserJet 1000, 1005, 1006, 1018, 1020
 
 %description udev-rules -l pl.UTF-8
 Reguły udev dla drukarek:
-- HP LaserJet 1000, 1005, 1018, 1020
+- HP LaserJet 1000, 1005, 1006, 1018, 1020
 
 %prep
 %setup -q -n %{name}
-%patch0 -p0
+%patch0 -p1
 %patch1 -p0
 
 %build
@@ -111,7 +115,8 @@ install %{SOURCE1} .
 install %{SOURCE2} .
 install %{SOURCE3} .
 install %{SOURCE4} .
-for i in sihp1000 sihp1005 sihp1018 sihp1020; do
+install %{SOURCE5} .
+for i in sihp1000 sihp1005 sihpP1006 sihp1018 sihp1020; do
 	tar -xf $i.tar.gz --use=gzip
 	rm $i.tar.gz
 	./arm2hpdl $i.img > $i.dl
