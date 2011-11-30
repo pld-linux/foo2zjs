@@ -1,22 +1,22 @@
 Summary:	Linux printer driver for ZjStream protocol
 Summary(pl.UTF-8):	Linuksowy sterownik drukarek dla protokołu ZjStream
 Name:		foo2zjs
-Version:	20080926
+Version:	20111123
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://foo2zjs.rkkda.com/%{name}.tar.gz
-# Source0-md5:	23f9b9a412d0986fa9d04b243464610f
+# Source0-md5:	e75e2bad825b67984af5629f000ad3e8
 Source1:	http://foo2zjs.rkkda.com/firmware/sihp1000.tar.gz
-# Source1-md5:	4555cc56685d324b07855a5eed4b83fc
+# Source1-md5:	eb7f6e1edfec313e6ca23abd27a0d1c2
 Source2:	http://foo2zjs.rkkda.com/firmware/sihp1005.tar.gz
-# Source2-md5:	6ff073de4e796d0bb3d5178c0305927d
+# Source2-md5:	04f7bd2eec09131371e27403626f38b5
 Source3:        http://foo2zjs.rkkda.com/firmware/sihpP1006.tar.gz
-# Source3-md5:	bee0e8b61976af6ffc0976cdf9bc2ba4
+# Source3-md5:	df4b0b84c6feb0d45f64d7fc219895a5
 Source4:	http://foo2zjs.rkkda.com/firmware/sihp1018.tar.gz
-# Source4-md5:	7ae97677adcc7962a82993dc4e012469
+# Source4-md5:	bf61f2ce504b233f999bc358f5a79499
 Source5:	http://foo2zjs.rkkda.com/firmware/sihp1020.tar.gz
-# Source5-md5:	b84f2512061da68a165e1e10a2adf502
+# Source5-md5:	1d408fa44fb43f2f5f8c8f7eabcc70c6
 Patch0:		%{name}-udev-rules.patch
 Patch1:		%{name}-hplj1000.patch
 URL:		http://foo2zjs.rkkda.com/
@@ -90,12 +90,12 @@ Reguły udev dla drukarek:
 %prep
 %setup -q -n %{name}
 %patch0 -p1
-%patch1 -p0
+%patch1 -p1
 
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"
+	CFLAGS="%{rpmcflags} %{rpmcppflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT

@@ -1,49 +1,48 @@
-diff -uNr foo2zjs.old/hplj10xx.rules foo2zjs/hplj10xx.rules
---- foo2zjs.old/hplj10xx.rules	2008-09-26 19:55:07.000000000 +0200
-+++ foo2zjs/hplj10xx.rules	2008-09-26 19:56:10.000000000 +0200
-@@ -1,36 +1,36 @@
+--- foo2zjs/hplj10xx.rules~	2010-04-09 22:53:09.000000000 +0200
++++ foo2zjs/hplj10xx.rules	2011-11-30 13:46:06.806284740 +0100
+@@ -4,36 +4,36 @@
  #Own udev rule for HP Laserjet 1000
- KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
- 	SYSFS{product}=="hp LaserJet 1000", NAME="usb/%k", \
+ KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", \
+ 	ATTRS{product}=="hp LaserJet 1000", NAME="usb/%k", \
 -	SYMLINK+="hplj1000-%n", MODE="0666", RUN+="/etc/hotplug/usb/hplj1000" 
 +	SYMLINK+="hplj1000-%n", MODE="0666", RUN+="/usr/bin/hplj1000" 
  #Own udev rule for HP Laserjet 1005
- KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
- 	SYSFS{product}=="hp LaserJet 1005 series", NAME="usb/%k", \
+ KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", \
+ 	ATTRS{product}=="hp LaserJet 1005 series", NAME="usb/%k", \
 -	SYMLINK+="hplj1005-%n", MODE="0666", RUN+="/etc/hotplug/usb/hplj1005" 
 +	SYMLINK+="hplj1005-%n", MODE="0666", RUN+="/usr/bin/hplj1005" 
  #Own udev rule for HP Laserjet 1018
- KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
- 	SYSFS{product}=="HP LaserJet 1018", NAME="usb/%k", \
+ KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", \
+ 	ATTRS{product}=="HP LaserJet 1018", NAME="usb/%k", \
 -	SYMLINK+="hplj1018-%n", MODE="0666", RUN+="/etc/hotplug/usb/hplj1018" 
 +	SYMLINK+="hplj1018-%n", MODE="0666", RUN+="/usr/bin/hplj1018" 
  #Own udev rule for HP Laserjet 1020
- KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
- 	SYSFS{product}=="HP LaserJet 1020", NAME="usb/%k", \
+ KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", \
+ 	ATTRS{product}=="HP LaserJet 1020", NAME="usb/%k", \
 -	SYMLINK+="hplj1020-%n", MODE="0666", RUN+="/etc/hotplug/usb/hplj1020" 
 +	SYMLINK+="hplj1020-%n", MODE="0666", RUN+="/usr/bin/hplj1020" 
  #Own udev rule for HP Laserjet P1005
- KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
- 	SYSFS{product}=="HP LaserJet P1005", NAME="usb/%k", \
+ KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", \
+ 	ATTRS{product}=="HP LaserJet P1005", NAME="usb/%k", \
 -	SYMLINK+="hpljP1005-%n", MODE="0666", RUN+="/etc/hotplug/usb/hpljP1005" 
 +	SYMLINK+="hpljP1005-%n", MODE="0666", RUN+="/usr/bin/hpljP1005" 
  #Own udev rule for HP Laserjet P1006
- KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
- 	SYSFS{product}=="HP LaserJet P1006", NAME="usb/%k", \
+ KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", \
+ 	ATTRS{product}=="HP LaserJet P1006", NAME="usb/%k", \
 -	SYMLINK+="hpljP1006-%n", MODE="0666", RUN+="/etc/hotplug/usb/hpljP1006" 
 +	SYMLINK+="hpljP1006-%n", MODE="0666", RUN+="/usr/bin/hpljP1006" 
  #Own udev rule for HP Laserjet P1007
- KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
- 	SYSFS{product}=="HP LaserJet P1007", NAME="usb/%k", \
+ KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", \
+ 	ATTRS{product}=="HP LaserJet P1007", NAME="usb/%k", \
 -	SYMLINK+="hpljP1007-%n", MODE="0666", RUN+="/etc/hotplug/usb/hpljP1007" 
 +	SYMLINK+="hpljP1007-%n", MODE="0666", RUN+="/usr/bin/hpljP1007" 
  #Own udev rule for HP Laserjet P1008
- KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
- 	SYSFS{product}=="HP LaserJet P1008", NAME="usb/%k", \
+ KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", \
+ 	ATTRS{product}=="HP LaserJet P1008", NAME="usb/%k", \
 -	SYMLINK+="hpljP1008-%n", MODE="0666", RUN+="/etc/hotplug/usb/hpljP1008" 
 +	SYMLINK+="hpljP1008-%n", MODE="0666", RUN+="/usr/bin/hpljP1008" 
  #Own udev rule for HP Laserjet P1505
- KERNEL=="lp*", BUS=="usb", SYSFS{idVendor}=="03f0", \
- 	SYSFS{product}=="HP LaserJet P1505", NAME="usb/%k", \
+ KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", \
+ 	ATTRS{product}=="HP LaserJet P1505", NAME="usb/%k", \
 -	SYMLINK+="hpljP1505-%n", MODE="0666", RUN+="/etc/hotplug/usb/hpljP1505" 
 +	SYMLINK+="hpljP1505-%n", MODE="0666", RUN+="/usr/bin/hpljP1505" 

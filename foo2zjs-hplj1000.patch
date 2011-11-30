@@ -1,28 +1,9 @@
---- hplj1000.orig	2007-03-06 23:00:06.000000000 +0000
-+++ hplj1000	2007-03-06 22:14:44.000000000 +0000
-@@ -47,7 +47,7 @@
- #    [snip]
- #    # Mount all other filesystems (except for NFS and /proc, which is already
- #
--PRINTERID=/bin/usb_printerid
-+PRINTERID=/usr/bin/usb_printerid
+--- foo2zjs/hplj1000~	2011-11-30 13:46:32.000000000 +0100
++++ foo2zjs/hplj1000	2011-11-30 13:47:15.427823974 +0100
+@@ -154,57 +154,6 @@
+ rm -f /etc/udev/rules.d/*hpmud*laserjet_${model}*
+ rm -f /etc/udev/rules.d/*hpmud_support.rules
  
- #
- #	Figure out how to log our messages
-@@ -65,7 +65,7 @@
- #
- #	Figure out the model number from the name of this script
- #
--case "$0" in
-+case "$1" in
- *P1005)
-     MODEL=P1005
-     USB1=0x03f0	#Vendor
-@@ -91,42 +91,6 @@
-     exit
-     ;;
- esac
--
 -#
 -#	The special command line argument "install-usermap" will install
 -#	the proper entry into the /etc/hotplug/usb.usermap file
@@ -57,7 +38,23 @@
 -    fi
 -    exit 0
 -    ;;
+-install-usblp)
+-    for f in /etc/modprobe.d/blacklist*; do
+-	if grep -s -q usblp $f; then
+-	    ed - $f <<-EOF
+-		g/^blacklist.*usblp/d
+-		w
+-		q
+-		EOF
+-	    #echo $f
+-	    /sbin/modprobe usblp
+-	fi
+-    done
+-    exit 0
+-    ;;
 -esac
-  
+- 
+-#
+ #	Procedures to load a single device with firmware
  #
- #	Procedure to load a single device with firmware
+ load_usblp() {
