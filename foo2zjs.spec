@@ -94,7 +94,7 @@ mv %{name}/* .; rmdir %{name}
 %patch1 -p1
 
 %build
-%{__make} \
+%{__make} -j1 \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} %{rpmcppflags}"
 
