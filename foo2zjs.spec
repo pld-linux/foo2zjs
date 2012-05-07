@@ -1,17 +1,17 @@
 Summary:	Linux printer driver for ZjStream protocol
 Summary(pl.UTF-8):	Linuksowy sterownik drukarek dla protokołu ZjStream
 Name:		foo2zjs
-Version:	20111123
+Version:	20120504
 Release:	1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://foo2zjs.rkkda.com/%{name}.tar.gz
-# Source0-md5:	e75e2bad825b67984af5629f000ad3e8
+Source0:	http://foo2zjs.rkkda.com/foo2zjs.tar.gz#/%{name}-%{version}.tar.gz
+# Source0-md5:	88fd5a0982001cfc17a58885802f37d7
 Source1:	http://foo2zjs.rkkda.com/firmware/sihp1000.tar.gz
 # Source1-md5:	eb7f6e1edfec313e6ca23abd27a0d1c2
 Source2:	http://foo2zjs.rkkda.com/firmware/sihp1005.tar.gz
 # Source2-md5:	04f7bd2eec09131371e27403626f38b5
-Source3:        http://foo2zjs.rkkda.com/firmware/sihpP1006.tar.gz
+Source3:	http://foo2zjs.rkkda.com/firmware/sihpP1006.tar.gz
 # Source3-md5:	df4b0b84c6feb0d45f64d7fc219895a5
 Source4:	http://foo2zjs.rkkda.com/firmware/sihp1018.tar.gz
 # Source4-md5:	bf61f2ce504b233f999bc358f5a79499
@@ -88,7 +88,8 @@ Reguły udev dla drukarek:
 - HP LaserJet 1000, 1005, 1006, 1018, 1020
 
 %prep
-%setup -q -n %{name}
+%setup -qc -a1 -a2 -a3 -a4 -a5
+mv %{name}/* .; rmdir %{name}
 %patch0 -p1
 %patch1 -p1
 
@@ -99,31 +100,26 @@ Reguły udev dla drukarek:
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/%{name}/{firmware,crd},/lib/udev/rules.d}
 
-install -d $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_bindir}
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{firmware,crd}
-install -d $RPM_BUILD_ROOT/etc/udev/rules.d
-install -d $RPM_BUILD_ROOT%{_mandir}/man1
-%{__make} install-prog PREFIX="$RPM_BUILD_ROOT%{_prefix}" MANDIR="$RPM_BUILD_ROOT%{_mandir}" UDEVBIN="$RPM_BUILD_ROOT%{_bindir}"
-%{__make} install-man PREFIX="$RPM_BUILD_ROOT%{_prefix}" MANDIR="$RPM_BUILD_ROOT%{_mandir}"
+%{__make} install-prog \
+	PREFIX=$RPM_BUILD_ROOT%{_prefix} \
+	MANDIR=$RPM_BUILD_ROOT%{_mandir} \
+	UDEVBIN=$RPM_BUILD_ROOT%{_bindir}
 
-install hplj1000 $RPM_BUILD_ROOT%{_bindir}/hplj10xx
-install hplj10xx.rules $RPM_BUILD_ROOT/etc/udev/rules.d/11-hplj10xx.rules
+%{__make} install-man \
+	PREFIX=$RPM_BUILD_ROOT%{_prefix} \
+	MANDIR=$RPM_BUILD_ROOT%{_mandir}
 
-install %{SOURCE1} .
-install %{SOURCE2} .
-install %{SOURCE3} .
-install %{SOURCE4} .
-install %{SOURCE5} .
+install -p hplj1000 $RPM_BUILD_ROOT%{_bindir}/hplj10xx
+cp -p hplj10xx.rules $RPM_BUILD_ROOT/lib/udev/rules.d/11-hplj10xx.rules
+
 for i in sihp1000 sihp1005 sihpP1006 sihp1018 sihp1020; do
-	tar -xf $i.tar.gz --use=gzip
-	rm $i.tar.gz
 	./arm2hpdl $i.img > $i.dl
-	install $i.dl $RPM_BUILD_ROOT%{_datadir}/%{name}/firmware
+	cp -p $i.dl $RPM_BUILD_ROOT%{_datadir}/%{name}/firmware
 done
-install *.ps $RPM_BUILD_ROOT%{_datadir}/%{name}
-install crd/zjs/*.{crd,ps} \
+cp -p *.ps $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -p crd/zjs/*.{crd,ps} \
 	$RPM_BUILD_ROOT%{_datadir}/%{name}/crd
 
 %clean
@@ -135,7 +131,37 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog README manual.pdf
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/arm2hpdl
+%attr(755,root,root) %{_bindir}/foo2hiperc
+%attr(755,root,root) %{_bindir}/foo2hiperc-wrapper
+%attr(755,root,root) %{_bindir}/foo2hp
+%attr(755,root,root) %{_bindir}/foo2hp2600-wrapper
+%attr(755,root,root) %{_bindir}/foo2lava
+%attr(755,root,root) %{_bindir}/foo2lava-wrapper
+%attr(755,root,root) %{_bindir}/foo2oak
+%attr(755,root,root) %{_bindir}/foo2oak-wrapper
+%attr(755,root,root) %{_bindir}/foo2qpdl
+%attr(755,root,root) %{_bindir}/foo2qpdl-wrapper
+%attr(755,root,root) %{_bindir}/foo2slx
+%attr(755,root,root) %{_bindir}/foo2slx-wrapper
+%attr(755,root,root) %{_bindir}/foo2xqx
+%attr(755,root,root) %{_bindir}/foo2xqx-wrapper
+%attr(755,root,root) %{_bindir}/foo2zjs
+%attr(755,root,root) %{_bindir}/foo2zjs-pstops
+%attr(755,root,root) %{_bindir}/foo2zjs-wrapper
+%attr(755,root,root) %{_bindir}/gipddecode
+%attr(755,root,root) %{_bindir}/hbpldecode
+%attr(755,root,root) %{_bindir}/hipercdecode
+%attr(755,root,root) %{_bindir}/hplj10xx
+%attr(755,root,root) %{_bindir}/lavadecode
+%attr(755,root,root) %{_bindir}/oakdecode
+%attr(755,root,root) %{_bindir}/opldecode
+%attr(755,root,root) %{_bindir}/printer-profile
+%attr(755,root,root) %{_bindir}/qpdldecode
+%attr(755,root,root) %{_bindir}/slxdecode
+%attr(755,root,root) %{_bindir}/usb_printerid
+%attr(755,root,root) %{_bindir}/xqxdecode
+%attr(755,root,root) %{_bindir}/zjsdecode
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*.ps
 %{_datadir}/%{name}/crd
@@ -147,4 +173,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files udev-rules
 %defattr(644,root,root,755)
-/etc/udev/rules.d/11-hplj10xx.rules
+/lib/udev/rules.d/11-hplj10xx.rules
