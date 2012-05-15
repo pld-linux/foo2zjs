@@ -132,6 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog README manual.pdf
 %attr(755,root,root) %{_bindir}/arm2hpdl
+%attr(755,root,root) %{_bindir}/command2foo2lava-pjl
 %attr(755,root,root) %{_bindir}/foo2hiperc
 %attr(755,root,root) %{_bindir}/foo2hiperc-wrapper
 %attr(755,root,root) %{_bindir}/foo2hp
