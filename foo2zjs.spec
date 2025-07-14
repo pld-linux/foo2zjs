@@ -90,8 +90,8 @@ Reguły udev dla drukarek:
 %prep
 %setup -qc -a1 -a2 -a3 -a4 -a5
 mv %{name}/* .; rmdir %{name}
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %{__make} -j1 \
